@@ -5,11 +5,16 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
     private Rigidbody2D rb;
+
     public float castDistance;
     public LayerMask groundLayer;
     public Vector2 boxSize;
+
     private bool canDoubleJump = false;
     private int jumpCount = 0;
+
+    private MovingPlatform currentPlatform;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
         
+        // Add platform velocity if on a moving platform
+        if (currentPlatform != null)
+        {
+            rb.linearVelocity += currentPlatform.PlatformVelocity;
+        }
+
         // Jumping
         if (Input.GetButtonDown("Jump"))
         {
@@ -28,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jump();
                 jumpCount = 1;
+                currentPlatform = GetCurrentPlatform();
             }
             else if (canDoubleJump && jumpCount < 2) // Double jump
             {
@@ -41,6 +53,15 @@ public class PlayerMovement : MonoBehaviour
         {
             canDoubleJump = !canDoubleJump;
             Debug.Log("Double Jump Enabled: " + canDoubleJump);
+        }
+        // Update current platform
+        if (isGrounded())
+        {
+            currentPlatform = GetCurrentPlatform();
+        }
+        else
+        {
+            currentPlatform = null;
         }
 
     }
@@ -66,5 +87,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position-transform.up*castDistance, boxSize);
+    }
+
+    private MovingPlatform GetCurrentPlatform() // Platform detection
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
+        if (hit.collider != null)
+        {
+            return hit.collider.GetComponent<MovingPlatform>();
+        }
+        return null;
     }
 }

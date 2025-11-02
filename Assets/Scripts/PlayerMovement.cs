@@ -74,7 +74,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()    // Ground check function
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer ))
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
+        //if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer ))
+        if (hit.collider != null && hit.normal.y > 0.7f)
         {
             return true;
         }

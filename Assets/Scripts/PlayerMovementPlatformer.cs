@@ -25,6 +25,10 @@ public class PlayerMovementPlatformer : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         //transform.position += new Vector3(moveHorizontal * moveSpeed * Time.deltaTime, 0, 0);
         RB1.linearVelocity = new Vector2(moveHorizontal * moveSpeed, RB1.linearVelocity.y);
+        if (moveHorizontal > 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else if (moveHorizontal < 0)
+            transform.localScale = new Vector3(1, 1, 1);
     }
 
     void Update()
@@ -52,11 +56,11 @@ public class PlayerMovementPlatformer : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("MovingPlatform"))
+        if (other.gameObject.CompareTag("MovingPlatform") && IsGrounded())
         {
             this.transform.parent = other.gameObject.transform;
         }
-        if (other.gameObject.CompareTag("Trampoline"))
+        if (other.gameObject.CompareTag("Trampoline") && IsGrounded())
         {
             RB1.linearVelocity = Vector2.up * 20f;
         }

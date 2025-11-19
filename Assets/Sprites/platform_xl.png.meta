@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7e329f8c6b3714c0ca1ffaa4ad2314b4
+guid: d52cf9da6c0b44e0db340d1c76d27852
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8916357448091262678
-    second: Errant_0
+      213: -774146694162811689
+    second: platform_xl_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 350
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Errant_0
+      name: platform_xl_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 631
+        width: 1000
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a21ac10542cb24480800000000000000
-      internalID: -8916357448091262678
+      spriteID: 7d4f16aeeada145f0800000000000000
+      internalID: -774146694162811689
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Errant_0: -8916357448091262678
+      platform_xl_0: -774146694162811689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

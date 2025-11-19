@@ -10,6 +10,7 @@ public class PlayerMovementPlatformer : MonoBehaviour
     private bool canDoubleJump = false;
     private int jumpCount = 0;
     public float castDistance;
+    public float castXOffset;
     public Vector2 boxSize;
 
 

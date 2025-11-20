@@ -1,209 +1,126 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Pathfinding;
 
 public class EnemyAISpearman : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    public Transform[] patrolPoints;
-    private int currentPatrolIndex = 0;
-    
-    [SerializeField] private float stopDistance = 0.5f;
-    [SerializeField] private float detectionRange = 8f;
-    [SerializeField] private float patrolAreaBuffer = 2f;
-    
-    [Header("Ground Detection")]
-    [SerializeField] private float groundCheckDistance = 2f;
-    [SerializeField] private LayerMask groundLayer;
-    
-    private Transform player;
-    private Vector2 patrolCenter;
-    private float patrolRadius;
 
-    void Start()
+    [Header("Pathfinding")]
+    public Transform target;
+    public float activateDistance = 50f;
+    public float pathUpdateSeconds = 0.5f;
+
+    [Header("Physics")]
+    public float speed = 200f;
+    public float nextWaypointDistance = 3f;
+    public float jumpNodeHeightRequirement = 0.8f;
+    public float jumpModifier = 0.3f;
+    public float jumpCheckOffset = 0.1f;
+
+    [Header("Custom Behavior")]
+    public bool followEnabled = true;
+    public bool jumpEnabled = true;
+    public bool directionLookEnabled = true;
+
+    private Path path;
+
+    private int currentWaypoint = 0;
+
+    bool isGrounded = false;
+    Seeker seeker;
+    Rigidbody2D rb;
+
+
+
+
+
+    public void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateUpAxis = false;
-        agent.updateRotation = false;
-        
-        // SOLUTION 1: Disable off-mesh links to prevent jumping/flying
-        agent.autoTraverseOffMeshLink = false;
-        
-        // Calculate patrol area bounds
-        CalculatePatrolArea();
-        
-        if (patrolPoints != null && patrolPoints.Length > 0)
-        {
-            agent.SetDestination(patrolPoints[0].position);
-        }
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
 
-        GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
-        if (playerGO != null)
+        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (TargetInDistance() && followEnabled)
         {
-            player = playerGO.transform;
+            PathFollow();
         }
     }
 
-    void Update()
-    {
-        if (player != null)
-        {
-            float distToPlayer = Vector2.Distance(transform.position, player.position);
-            
-            if (distToPlayer < detectionRange)
-            {
-                // Check if player is within patrol area before chasing
-                if (IsPlayerInPatrolArea())
-                {
-                    agent.SetDestination(player.position);
-                }
-                else
-                {
-                    // Player detected but outside patrol area - return to patrol
-                    Patrol();
-                }
-            }
-            else
-            {
-                Patrol();
-            }
-        }
-        else
-        {
-            Patrol();
-        }
+    private void UpdatePath()
 
-        // SOLUTION 3: Force ground snapping with raycast
-        KeepOnGround();
+    {
+        // object has been foiund
+        if (followEnabled && TargetInDistance() && seeker.IsDone())
+        {
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+        }
     }
 
-    void Patrol()
+    private void PathFollow()
     {
-        if (patrolPoints == null || patrolPoints.Length == 0)
+        if (path == null)
+        {
             return;
-
-        // Improved patrol point detection
-        if (!agent.pathPending && agent.hasPath)
-        {
-            if (agent.remainingDistance <= stopDistance)
-            {
-                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-                agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-            }
         }
-    }
 
-    void KeepOnGround()
-    {
-        // Raycast down to find ground
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-        
-        if (hit.collider != null)
+        // reached the end of path
+        if (currentWaypoint >= path.vectorPath.Count)
         {
-            // Snap to ground Y position, keep Z locked at 0
-            transform.position = new Vector3(transform.position.x, hit.point.y, 0f);
-        }
-        else
-        {
-            // Fallback: just lock Z if no ground detected
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-            
-            // Optional: Stop agent if it lost ground contact
-            // agent.isStopped = true;
-            // Debug.LogWarning($"{gameObject.name} lost ground contact!");
-        }
-    }
-
-    void CalculatePatrolArea()
-    {
-        if (patrolPoints == null || patrolPoints.Length == 0)
             return;
-
-        // Find center of patrol area
-        Vector2 sum = Vector2.zero;
-        foreach (Transform point in patrolPoints)
-        {
-            if (point != null)
-                sum += (Vector2)point.position;
         }
-        patrolCenter = sum / patrolPoints.Length;
 
-        // Find the farthest patrol point to determine radius
-        patrolRadius = 0f;
-        foreach (Transform point in patrolPoints)
+        Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
+        isGrounded = Physics2D.Raycast(startOffset,-Vector3.up,0.05f);
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+
+        if (jumpEnabled && isGrounded)
         {
-            if (point != null)
+            if (direction.y > jumpNodeHeightRequirement)
             {
-                float dist = Vector2.Distance(patrolCenter, point.position);
-                if (dist > patrolRadius)
-                    patrolRadius = dist;
+                rb.AddForce(Vector2.up * speed * jumpModifier);
             }
         }
-        
-        // Add buffer zone
-        patrolRadius += patrolAreaBuffer;
+
+        rb.AddForce(force);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+
+        if (directionLookEnabled)
+        {
+            if (rb.linearVelocity.x > 0.05f)
+            {
+                transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (rb.linearVelocity.x < -0.05f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
     }
 
-    bool IsPlayerInPatrolArea()
+    private bool TargetInDistance()
     {
-        if (player == null)
-            return false;
-
-        float distFromCenter = Vector2.Distance(patrolCenter, player.position);
-        return distFromCenter <= patrolRadius;
+        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }
 
-    void OnDrawGizmosSelected()
+    private void OnPathComplete(Path p)
     {
-        // Draw detection range
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-        
-        // Draw patrol points
-        if (patrolPoints != null)
+        if (!p.error)
         {
-            Gizmos.color = Color.green;
-            foreach (Transform point in patrolPoints)
-            {
-                if (point != null)
-                    Gizmos.DrawWireSphere(point.position, 0.2f);
-            }
-        }
-        
-        // Draw ground check ray
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (Application.isPlaying ? groundCheckDistance : 2f));
-        
-        // Draw patrol area boundary
-        if (Application.isPlaying)
-        {
-            Gizmos.color = new Color(0, 1, 0, 0.3f);
-            Gizmos.DrawWireSphere(patrolCenter, patrolRadius);
-        }
-        else if (patrolPoints != null && patrolPoints.Length > 0)
-        {
-            // Calculate and show patrol area in edit mode too
-            Vector2 center = Vector2.zero;
-            foreach (Transform point in patrolPoints)
-            {
-                if (point != null)
-                    center += (Vector2)point.position;
-            }
-            center /= patrolPoints.Length;
-            
-            float radius = 0f;
-            foreach (Transform point in patrolPoints)
-            {
-                if (point != null)
-                {
-                    float dist = Vector2.Distance(center, point.position);
-                    if (dist > radius)
-                        radius = dist;
-                }
-            }
-            radius += patrolAreaBuffer;
-            
-            Gizmos.color = new Color(0, 1, 0, 0.3f);
-            Gizmos.DrawWireSphere(center, radius);
+            path = p;
+            currentWaypoint = 0;
         }
     }
+
 }

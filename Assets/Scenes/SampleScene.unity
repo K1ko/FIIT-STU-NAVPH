@@ -230,39 +230,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -3.3993766
+      value: -3.3601513
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: 0.430637
+      value: 0.35218596
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -3.4991307
+      value: -3.4076047
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: -0.0483298
+      value: -0.061404914
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: -3.3716316
+      value: -3.3454812
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -0.44450974
+      value: -0.3660587
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
-      value: 3.3993769
+      value: 3.2947755
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
-      value: -0.44450974
+      value: -0.3660586
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
-      value: 3.4980962
+      value: 3.3673444
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
@@ -270,11 +270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].x
-      value: 3.3716314
+      value: 3.26703
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
-      value: 0.4445095
+      value: 0.36605835
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -417,9 +417,10 @@ GameObject:
   m_Component:
   - component: {fileID: 253046461}
   - component: {fileID: 253046464}
-  - component: {fileID: 253046463}
-  - component: {fileID: 253046462}
   - component: {fileID: 253046465}
+  - component: {fileID: 253046466}
+  - component: {fileID: 253046468}
+  - component: {fileID: 253046467}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -443,62 +444,6 @@ Transform:
   - {fileID: 508462191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &253046462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253046460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIDestinationSetter
-  version: 1
-  target: {fileID: 439759657}
---- !u!114 &253046463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253046460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIPath
-  version: 5
-  radius: 1.16
-  height: 2
-  canMove: 1
-  maxSpeed: 3
-  gravity: {x: 0, y: 0, z: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 1
-  enableRotation: 0
-  autoRepath:
-    mode: 2
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 1.5
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
 --- !u!114 &253046464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +528,61 @@ PolygonCollider2D:
       - {x: 0.87719727, y: -0.11375904}
       - {x: 1.1311684, y: 0.10994619}
   m_UseDelaunayMesh: 0
+--- !u!114 &253046466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253046460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e4cd25c72314d6c9cf9974170df950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  health: 3
+--- !u!50 &253046467
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253046460}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 1.5
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &253046468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253046460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e8fc6ef921d432a858305720fc202b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 439759657}
+  speed: 500
+  nextWaypointDistance: 3
 --- !u!1 &275541743
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 331106571}
   - component: {fileID: 331106570}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightBoundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.831804, y: 20.45925, z: 0}
-  m_LocalScale: {x: 0.3058104, y: 59.45, z: 1}
+  m_LocalScale: {x: 0.3058104, y: 182.80876, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 505291255}
@@ -730,7 +730,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.7
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: c1caf1fc5e5ef4647bb37a1094aa3a15, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -809,7 +809,7 @@ Transform:
   m_GameObject: {fileID: 439759652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.468, y: -0.49, z: 0}
+  m_LocalPosition: {x: 5.01, y: -0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1157,7 +1157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 505291255}
   - component: {fileID: 505291254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1784,11 +1784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 2.372787
+      value: 2.3362346
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -0.44764853
+      value: -0.48420095
       objectReference: {fileID: 0}
     - target: {fileID: 6133987510159509931, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
@@ -1822,9 +1822,10 @@ GameObject:
   m_Component:
   - component: {fileID: 954764754}
   - component: {fileID: 954764758}
-  - component: {fileID: 954764755}
-  - component: {fileID: 954764757}
   - component: {fileID: 954764756}
+  - component: {fileID: 954764760}
+  - component: {fileID: 954764759}
+  - component: {fileID: 954764761}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1848,48 +1849,6 @@ Transform:
   - {fileID: 1251010087}
   m_Father: {fileID: 275541744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &954764755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954764753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIPath
-  version: 5
-  radius: 0.83
-  height: 2
-  canMove: 1
-  maxSpeed: 3
-  gravity: {x: 0, y: -3, z: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 1
-  enableRotation: 0
-  autoRepath:
-    mode: 2
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 1.5
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
 --- !u!60 &954764756
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1948,20 +1907,6 @@ PolygonCollider2D:
       - {x: 0.7499447, y: -0.3410368}
       - {x: 0.64585924, y: 0.14254588}
   m_UseDelaunayMesh: 0
---- !u!114 &954764757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954764753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIDestinationSetter
-  version: 1
-  target: {fileID: 439759657}
 --- !u!114 &954764758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,6 +1935,69 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &954764759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954764753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654b7a1206d094a8cbf6f42f75678dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAISpearman
+  target: {fileID: 439759657}
+  activateDistance: 50
+  pathUpdateSeconds: 0.5
+  speed: 800
+  nextWaypointDistance: 3
+  jumpNodeHeightRequirement: 0.8
+  jumpModifier: 0.34
+  jumpCheckOffset: 0.1
+  followEnabled: 1
+  jumpEnabled: 1
+  directionLookEnabled: 1
+--- !u!50 &954764760
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954764753}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 3
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &954764761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954764753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e4cd25c72314d6c9cf9974170df950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  health: 3
 --- !u!4 &1085119085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4850742314020571558, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
@@ -2005,7 +2013,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1251010087}
   - component: {fileID: 1251010086}
-  - component: {fileID: 1251010088}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -2080,25 +2087,12 @@ Transform:
   m_GameObject: {fileID: 1251010082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.21, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 954764754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1251010088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251010082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768e8efa8a55a412a860ca42c22a53ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  aIPath: {fileID: 954764755}
 --- !u!4 &1260189100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4850742314020571558, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}
@@ -2362,7 +2356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::AstarPath
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIezNcoYhfAIAADcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1zmzAQ/SsenWsPHwng3lriOD0k8dTt5MJFhsVoLCRGErGdjP97VwIMdbgg3n69t7vikzChG8iNVGvFimdZAPk+I/ZMvs1G4xOc6F6KLfuAweeNFaayTtT5/KaGScR9G6ZlDUax/IfYc+vsIdgKVkpVr4o9pFIbjXBJuQY0KWlstEDoc0ZO+JovbcgZT0FsTx94WnqzCx5zEAbU6Do43i+W9knu497fX3hxkCRhHKzmXuRiW5FzWjdQWCFjCj/pc/idm0CJvYeVk0vOme75EXNunP6UNrpFdehQMIp6HSl/ESJQAdtXxrKfhr+WpQbTU1b0/MAUNq7LS37Krps11YeO2Tvlra0U3TlSXc7nL+a578ylkvXTUNb3bAlTsfzwm55zqs2k21P4YcLc9edI+YHuOLxVIF7kWslWFGg0qrWhrYbgYfy8KksryA8j3lG9Advm68yCRZjc+UkURjiiYW5W0MV14pRyVu+s/+KuA7Zcuu679QCFc/qF7N3y6D4vopbSXw1/6H66Zb3hkSlt0NRLFpbrTrbKupKVa6CV1ppUKgEO7hU0ICg35w2mMbfjvLFNyt5YHqm9T33x3jZck5sQB4/+nndj2sjjdXK6ksdn0NVrazgTMJK2hhfsUyqF6LZt2pMhbNuqkuaTsH3Liv/3jOy8Mg7zMKTLhIZlUs5DLwhouIviKFzGUZkQt4hMoE7KNx3Rvj04NTEmF7h0w29mtla0cZtfKHpcs49aTgkyUcptrgDEa5fiyhwUVsFLWqwKhh3agjFMuIGTz4xwmR+gyK41Myd1dTKKZmOWjDTsXRqLZCR1P5aMWPi62RsF7wyOtviQ7EIu/wBQSwMEFAAACAgAAAgh7EfR53JtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKSQZq5cbKxcaKlRaJxmkWarrGBkVGicZKZuZmxpblZmoVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7M1yhiF8AgAANwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7EfR53JtAAAAeAAAAAkAJAAAAAAAAAAAAAAAyQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACBAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAIIexf7afuiwIAAEsFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1zmzAQ/SsenWsPHy7YvbXYcXpI4onTyYWLDIvRWEiMJGI7Gf/3rgQY6nJBvP16+3bFF2FC15AZqTaK5U8yB/JjQuyZfJsMxkc404MUO/YJvc87y01pnajzeaWGScR9G6ZlBUax7Kc4cOvsIdgIVkhVrfMDJFIbjXBBuQY0KWlstEDoa0LO+JoubcgFT0FsT594WnqTKx4zEAbU4OrN5sEi/u53/uHMt59hFHVhU38Wzn3fm4fxeurFLkcjMk6rGnLb0JAq8GdBl8b3Z3PPPpELENh05+s5n0xyznTHmZhL7TRJaK0b7BgdckZRA0cUCSBQAjuUxlYZh78UhQbTSaToZcUUitnmJb9kq3BF9bFl+UF5Yyv5y8DxapM+/Wef+s5cKFk99nV9z9YwJcuOr/SSUW1GIxjDqxF1J9aJ8iPdc3gvQTzLjZKNyNFoVGNDGw3Bavi8tZaUkB0HvKV6Bzb1aJD9xGfhYu4vojCy87pNcXK9OinOCWfVvh18C+y4dPK7nQGFo/qN7N1G6S4vopbSHw1v9DBevc7wwJQ2aOpaFpbrXjbKupK1E9C21phEKgEO7jqoQVBuLltMY+7neWcblb2zPFB7ybrina2/O3chDh78Pe/OtJWn2+R0KU9PoMuXxnAmYCBtDc+oUyKFaNdtrEkftmtUQbNR2KFh+b97RvZeEYdZGNLlgobFopiGXhDQcB/FUbiMo2JB3CIygX1Svm2JdvLg1MSQXODS9f+eyUbR2q1+ruhpwz4rOZKciULuMgUgXtoMN+KgsAhe03ydMxRoB8Yw4eZNvlLCZXaEPL0lSl2n67NRNB2ypKRmH9JYJCWJ+9mkxMK3xd4q+GBwssX7ZFdy/QtQSwMEFAAACAgAAAgh7EfR53JtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKSQZq5cbKxcaKlRaJxmkWarrGBkVGicZKZuZmxpblZmoVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7F/tp+6LAgAASwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7EfR53JtAAAAeAAAAAkAJAAAAAAAAAAAAAAA2AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACQAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2460,7 +2454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1590457195}
   - component: {fileID: 1590457194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftBoundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2522,8 +2516,8 @@ Transform:
   m_GameObject: {fileID: 1590457193}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9174314, y: 17.55925, z: 0}
-  m_LocalScale: {x: 0.3058104, y: 51.75, z: 1}
+  m_LocalPosition: {x: -1.9174314, y: 17.559, z: 0}
+  m_LocalScale: {x: 0.3058104, y: 181.125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 505291255}
@@ -2584,17 +2578,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.435, y: 0.48499998}
-      - {x: 1.4, y: 0.5}
-      - {x: -1.415, y: 0.5}
-      - {x: -1.48, y: 0.405}
-      - {x: -1.5, y: 0.31}
-      - {x: -1.5, y: -0.29999998}
-      - {x: -1.435, y: -0.48999998}
-      - {x: -1.4, y: -0.5}
-      - {x: 1.42, y: -0.5}
-      - {x: 1.5, y: -0.405}
-      - {x: 1.5, y: 0.34}
+    - - {x: 1.3405004, y: 0.36472782}
+      - {x: 1.235514, y: 0.4268949}
+      - {x: -1.2928529, y: 0.37785363}
+      - {x: -1.3171372, y: 0.2964256}
+      - {x: -1.3642817, y: 0.18785352}
+      - {x: -1.3536878, y: -0.1538558}
+      - {x: -1.3371382, y: -0.286428}
+      - {x: -1.2071085, y: -0.38757572}
+      - {x: -1.2107733, y: -0.384004}
+      - {x: 1.2789973, y: -0.4127128}
+      - {x: 1.3355141, y: -0.35017136}
+      - {x: 1.3903427, y: 0.2120665}
   m_UseDelaunayMesh: 0
 --- !u!1 &1873650406
 GameObject:

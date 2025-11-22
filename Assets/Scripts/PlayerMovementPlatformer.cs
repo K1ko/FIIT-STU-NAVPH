@@ -63,7 +63,7 @@ public class PlayerMovementPlatformer : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Trampoline") && IsGrounded())
         {
-            RB1.linearVelocity = Vector2.up * 20f;
+            RB1.linearVelocity = Vector2.up * 30f;
         }
     }
 

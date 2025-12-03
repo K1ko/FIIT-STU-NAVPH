@@ -48,7 +48,7 @@ public class PlayerMovementPlatformer : MonoBehaviour
             }
         }
         // Toggle double jump on key press 'E' for testing
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             canDoubleJump = !canDoubleJump;
             Debug.Log("Double Jump Enabled: " + canDoubleJump);
@@ -82,6 +82,7 @@ public class PlayerMovementPlatformer : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, castDistance, groundLayer);
+        //overlapcollider
         //Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
         return raycastHit2d.collider != null;
     }

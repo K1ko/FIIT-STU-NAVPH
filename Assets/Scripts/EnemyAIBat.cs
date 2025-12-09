@@ -3,7 +3,8 @@ using Pathfinding;
 
 public class EnemyAIBat : MonoBehaviour
 {
-    public enum AIState { Patrol, Chase }
+    public enum AIState { Patrol, Chase, Attack }
+
     public AIState state = AIState.Patrol;
 
     [Header("Target")]
@@ -12,6 +13,14 @@ public class EnemyAIBat : MonoBehaviour
     [Header("Movement")]
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
+
+    [Header("Attack Settings")]
+    public float attackCooldown = 1.0f;
+    public int attackDamage = 10;
+    private float lastAttackTime = 0f;
+
+
+    
 
     Path path;
 
@@ -79,6 +88,42 @@ public class EnemyAIBat : MonoBehaviour
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (Time.time - lastAttackTime >= attackCooldown)
+            {
+                lastAttackTime = Time.time;
+
+                // Damage the player
+                playerHealth health = collision.gameObject.GetComponent<playerHealth>();
+                if (health != null)
+                {
+                    health.TakeDamage(attackDamage);
+                }
+
+                // Get directions
+                Vector2 direction = (collision.transform.position - transform.position).normalized;
+
+                // Knockback Player
+                Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
+                {
+                    Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
+                    float knockbackForce = 800f; 
+                    playerRb.AddForce(knockbackDir * knockbackForce);
+                }
+
+                // Knockback Bat (in opposite direction)
+                float batKnockbackForce = 10f; // less force than player
+                rb.AddForce(-direction * batKnockbackForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+
 
     private void DetectPlayer()
     {

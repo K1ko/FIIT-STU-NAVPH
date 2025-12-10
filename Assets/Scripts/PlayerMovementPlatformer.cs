@@ -13,6 +13,8 @@ public class PlayerMovementPlatformer : MonoBehaviour
     public float castXOffset;
     public Vector2 boxSize;
 
+    public Animator anim;
+
 
     void Start()
     {
@@ -24,13 +26,17 @@ public class PlayerMovementPlatformer : MonoBehaviour
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-        //transform.position += new Vector3(moveHorizontal * moveSpeed * Time.deltaTime, 0, 0);
+
         RB1.linearVelocity = new Vector2(moveHorizontal * moveSpeed, RB1.linearVelocity.y);
-        if (moveHorizontal > 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-        else if (moveHorizontal < 0)
-            transform.localScale = new Vector3(1, 1, 1);
+
+        // Flip character based on direction
+        if (moveHorizontal != 0)
+            transform.localScale = new Vector3(Mathf.Sign(moveHorizontal), 1, 1);
+
+        // Set isRunning animation
+        anim.SetBool("isRunning", Mathf.Abs(moveHorizontal) > 0.01f);
     }
+
 
     void Update()
     {

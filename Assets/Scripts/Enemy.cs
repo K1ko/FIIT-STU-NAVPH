@@ -2,13 +2,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
+    [SerializeField] private float maxHealth = 3f;
+    private float currentHealth;
+
+    private HealthBarOther healthBar;
     
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar = GetComponentInChildren<HealthBarOther>();
+        
+    }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
-        if (health <= 0)
+        currentHealth -= damage;
+        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + currentHealth);
+        healthBar.UpdateHealthBar(maxHealth, currentHealth);
+        if (currentHealth <= 0)
         {
             Die();
         }

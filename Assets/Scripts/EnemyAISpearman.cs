@@ -45,6 +45,7 @@ private float lastAttackTime = 0f;
     bool isGrounded = false;
     Seeker seeker;
     Rigidbody2D rb;
+    [HideInInspector] public bool spawnedByBoss = false;
 
     public void Start()
     {
@@ -52,10 +53,21 @@ private float lastAttackTime = 0f;
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
+
+        if (spawnedByBoss)
+        {
+            state = AIState.Chase;
+
+            // Make sure they can ALWAYS detect player in the arena
+            chaseDistance = 999f;
+            loseTargetDistance = 999f;
+        }
     }
 
     private void FixedUpdate()
     {
+        if (target == null)
+            return;
         switch (state)
         {
             case AIState.Patrol:
@@ -90,7 +102,12 @@ private float lastAttackTime = 0f;
     // --------------------- PATROLLING ---------------------
     private void Patrol()
     {
-        if (patrolPoints.Length == 0) return;
+         // Never patrol if spawned by boss
+        if (spawnedByBoss)
+        {
+            state = AIState.Chase;
+            return;
+        }
 
         Transform point = patrolPoints[patrolIndex];
 
@@ -116,6 +133,12 @@ private float lastAttackTime = 0f;
 
     private void ReturnToPatrol()
     {
+        if (spawnedByBoss)
+        {
+            // Never return to patrol, stay in chase mode
+            state = AIState.Chase;
+            return;
+        }
         // Stop chasing and go back to patrol - if the player is beyond lose target distance
         if (Vector2.Distance(transform.position, target.position) > loseTargetDistance)
         {
@@ -213,7 +236,7 @@ private float lastAttackTime = 0f;
             lastAttackTime = Time.time;
 
             // Damage player
-            playerHealth health = target.GetComponent<playerHealth>();
+            PlayerHealth health = target.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(attackDamage);

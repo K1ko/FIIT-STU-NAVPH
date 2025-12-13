@@ -9,6 +9,14 @@ public class BossPhaseTwo : MonoBehaviour
     public GameObject normalFloor;
     public GameObject spikeFloor;
 
+    [Header("Collectibles")]
+    public GameObject collectiblePrefab;
+    public int numberOfCollectibles = 5;
+    public Vector3 spawnAreaMin;
+    public Vector3 spawnAreaMax;
+
+    
+
     private void Awake()
     {
         if (boss == null)
@@ -46,6 +54,26 @@ public class BossPhaseTwo : MonoBehaviour
 
         if (spikeFloor != null)
             spikeFloor.SetActive(true);
+
+        SpawnCollectibles();
+    }
+
+    private void SpawnCollectibles()
+    {
+        if (collectiblePrefab == null) return;
+
+        for (int i = 0; i < numberOfCollectibles; i++)
+        {
+            Vector3 randomPos = new Vector3(
+                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                Random.Range(spawnAreaMin.y, spawnAreaMax.y),
+                Random.Range(spawnAreaMin.z, spawnAreaMax.z)
+            );
+
+            Instantiate(collectiblePrefab, randomPos, Quaternion.identity);
+        }
+
+        Debug.Log("BossPhaseTwo: Spawned " + numberOfCollectibles + " collectibles.");
     }
 
     private void DestroyAllBossMinions()

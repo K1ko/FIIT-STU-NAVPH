@@ -1,23 +1,50 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class HealthBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Slider slider;
+    [Header("Health Bar Components")]
+    public Slider slider;         // The slider UI
+    public Image fill;            // The fill image of the slider
+    public Gradient gradient;     // Gradient to color the fill from red to green
+    private float target = 1f;
 
-    // Sets the maximum health value of the health bar
+    [Header("Lerp Settings")]
+    public float lerpSpeed = 5f;  // How quickly to animate the health bar
+
+    private float targetHealth;
+
     public void SetMaxHealth(float health)
     {
         slider.maxValue = health;
         slider.value = health;
-        Debug.Log("Health bar max health set to: " + health);
+        targetHealth = health;
+
+        fill.color = gradient.Evaluate(target); // Full health
     }
 
-    // Sets the current health value of the health bar
     public void SetHealth(float health)
     {
-        slider.value = health;
-        Debug.Log("Health bar current health set to1: " + health);
+        targetHealth = health;
+        StopAllCoroutines();
+        StartCoroutine(LerpHealth());
+    }
+
+    private IEnumerator LerpHealth()
+    {
+        while (Mathf.Abs(slider.value - targetHealth) > 0.01f)
+        {
+            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * lerpSpeed);
+
+            float normalizedHealth = slider.value / slider.maxValue;
+            fill.color = gradient.Evaluate(normalizedHealth);
+
+            yield return null;
+        }
+
+        // Snap to exact value at the end
+        slider.value = targetHealth;
+        fill.color = gradient.Evaluate(targetHealth / slider.maxValue);
     }
 }

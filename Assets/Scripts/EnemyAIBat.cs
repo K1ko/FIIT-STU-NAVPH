@@ -98,7 +98,7 @@ public class EnemyAIBat : MonoBehaviour
                 lastAttackTime = Time.time;
 
                 // Damage the player
-                playerHealth health = collision.gameObject.GetComponent<playerHealth>();
+                PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
                 if (health != null)
                 {
                     health.TakeDamage(attackDamage);

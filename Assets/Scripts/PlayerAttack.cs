@@ -6,7 +6,8 @@ public class PlayerAttack : MonoBehaviour
     public float startTimeBetweenAttacks;
 
     public Transform attackPos;
-    public LayerMask enemies;
+    public LayerMask enemyLayers;
+    public LayerMask bossLayers;
     public float attackRange;
 
     public int damage;
@@ -18,13 +19,20 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetKey(KeyCode.F)) // F button
             {
                 Debug.Log("Attack!");
-                // Attack code here
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemies);
+                
+                // Attack regular enemies
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayers);
                 foreach (Collider2D enemy in enemiesToDamage)
                 {
-                    // Here you would typically call a method on the enemy to apply damage
                     enemy.GetComponent<Enemy>().TakeDamage(damage);
-                    Debug.Log("Damaged " + enemy.name);
+                    Debug.Log("Damaged enemy: " + enemy.name);
+                }
+                // Attack boss
+                Collider2D[] bossesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, bossLayers);
+                foreach (Collider2D boss in bossesToDamage)
+                {
+                    boss.GetComponent<Boss>().TakeDamage(damage);
+                    Debug.Log("Damaged boss: " + boss.name);
                 }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;
@@ -34,8 +42,7 @@ public class PlayerAttack : MonoBehaviour
             timeBetweenAttacks -= Time.deltaTime;
         }
     }
-    
-    // Gizmos to visualize attack range
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -42,8 +42,8 @@ public class BossFireScript : MonoBehaviour
         {
             // Damage the player
             Debug.Log("Player hit by boss fire!");
-            collision.gameObject.GetComponent<playerHealth>().health -= 20;
-            Debug.Log("Player health: " + collision.gameObject.GetComponent<playerHealth>().health);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(20);
+            Debug.Log("Player health: " + collision.gameObject.GetComponent<PlayerHealth>().health);
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Ground"))

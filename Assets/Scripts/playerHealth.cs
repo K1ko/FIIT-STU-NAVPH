@@ -1,20 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
+
+    public float maxHealth = 100;
     public float health;
-    public float maxHealth;
-    public Image healthBar;
+    public HealthBar healthBar;
 
     void Start()
     {
-        maxHealth = health;
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
-        healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            TakeDamage(10f);
+        }
+
 
         if (health <= 0)
         {
@@ -25,6 +32,7 @@ public class playerHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+        healthBar.SetHealth(health);
         Debug.Log("Player took " + amount + " damage. Current health: " + health);
     }
 }

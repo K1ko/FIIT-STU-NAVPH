@@ -8,6 +8,7 @@ TagManager:
   - Trampoline
   - MovingPlatform
   - BossMinion
+  - BossCollectible
   layers:
   - Default
   - TransparentFX

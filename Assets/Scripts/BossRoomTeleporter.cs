@@ -20,8 +20,9 @@ public class BossRoomTeleporter : MonoBehaviour
 
             // Snap the camera instantly to the new player position
             CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-            cam.SnapToPlayer(-224.5f);
-            cam.SetBossZoom(25f);
+            cam.SetBossBounds();
+            cam.SnapToPlayer(-224.65f);
+            cam.SetBossZoom(22f);
             // Activate the boss
             if (boss != null)
             {

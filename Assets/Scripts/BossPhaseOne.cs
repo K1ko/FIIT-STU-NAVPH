@@ -92,7 +92,6 @@ public class BossPhaseOne : MonoBehaviour
                 Quaternion.identity
             );
     
-            // IMPORTANT: tag the minion so Phase 2 can find it
             minionObj.tag = "BossMinion";
     
             EnemyAISpearman minion = minionObj.GetComponent<EnemyAISpearman>();
@@ -117,4 +116,11 @@ public class BossPhaseOne : MonoBehaviour
             this.enabled = false;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 10f); // Phase One range
+    }
+
 }

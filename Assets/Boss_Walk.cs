@@ -7,7 +7,7 @@ public class Boss_Walk : StateMachineBehaviour
     Transform player;
     Rigidbody2D rb;
     public float speed;
-    public float attackRange = 10f; // Boss stops walking and starts attacking at this range
+    private float attackRange;// Boss stops walking and starts attacking at this range
 
     Boss boss;
 
@@ -16,6 +16,11 @@ public class Boss_Walk : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody2D>();
         boss = animator.GetComponent<Boss>();
+
+        if (boss != null)
+        {
+            attackRange = boss.GetCurrentAttackRange();
+        }
         Debug.Log("Boss Walk State Entered");
     }
 
@@ -31,13 +36,13 @@ public class Boss_Walk : StateMachineBehaviour
             Vector2 target = new Vector2(player.position.x, rb.position.y);
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
-            Debug.Log("Boss moving toward player at: " + target);
+            //Debug.Log("Boss moving toward player at: " + target);
         }
         else if (distanceToPlayer <= attackRange)
         {
             // Stop and attack
             animator.SetTrigger("Attack");
-            Debug.Log("Boss in range (" + distanceToPlayer + "), triggering Attack.");
+            //Debug.Log("Boss in range (" + distanceToPlayer + "), triggering Attack.");
         }
     }
 

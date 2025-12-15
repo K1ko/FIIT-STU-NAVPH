@@ -37,6 +37,7 @@ public class BossFireScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+    // Handle collision with player
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -46,9 +47,9 @@ public class BossFireScript : MonoBehaviour
             Debug.Log("Player health: " + collision.gameObject.GetComponent<PlayerHealth>().health);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Ground"))
-        {
-            Destroy(gameObject);
-        }
+        // else if (collision.gameObject.CompareTag("Ground"))
+        // {
+        //     Destroy(gameObject);
+        // }
     }
 }

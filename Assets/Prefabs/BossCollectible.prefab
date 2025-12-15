@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3392917888429946484}
   m_Layer: 0
   m_Name: BossCollectible
-  m_TagString: Untagged
+  m_TagString: BossCollectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b2866abb9b641e8af6be5140a42727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  damageToBoss: 10
+  damageToBoss: 50
 --- !u!61 &-3437056108474162844
 BoxCollider2D:
   m_ObjectHideFlags: 0

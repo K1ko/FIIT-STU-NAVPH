@@ -16,6 +16,11 @@ public class Boss : MonoBehaviour
 
     public int currentPhase = 1;
 
+    [Header("Attack Ranges Per Phase")]
+    public float phase1AttackRange = 10f;
+    public float phase2AttackRange = 15f;
+    public float phase3AttackRange = 20f;
+
     public event Action<int> OnPhaseChanged;
 
     public bool isFacingRight = false;
@@ -72,6 +77,17 @@ public class Boss : MonoBehaviour
             currentPhase = 3;
             Debug.Log("Boss entering Phase 3");
             OnPhaseChanged?.Invoke(3);
+        }
+    }
+
+    public float GetCurrentAttackRange()
+    {
+        switch (currentPhase)
+        {
+            case 1: return phase1AttackRange;
+            case 2: return phase2AttackRange;
+            case 3: return phase3AttackRange;
+            default: return phase1AttackRange;
         }
     }
 

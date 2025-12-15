@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -9,6 +8,17 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
+    [Header("Vertical Limits - Normal World")]
+    public float normalMinY = 9f;
+    public float normalMaxY = 200f;
+
+    [Header("Vertical Limits - Boss Arena")]
+    public float bossMinY = 13.2f;
+    public float bossMaxY = 35f;
+
+    private float currentMinY;
+    private float currentMaxY;
+
     private float normalSize;
     private float targetSize;
     public float zoomSpeed = 3f;
@@ -16,56 +26,68 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         Camera cam = GetComponent<Camera>();
-        normalSize = cam.orthographicSize;   // this is 10 in your inspector
+        normalSize = cam.orthographicSize;
         targetSize = normalSize;
+
+        // Start in normal world
+        currentMinY = normalMinY;
+        currentMaxY = normalMaxY;
     }
 
     void LateUpdate()
     {
-        // Keep EXACTLY your original X behavior
+        if (player == null) return;
+
+        float desiredY = player.position.y + verticalOffset;
+
+        // Clamp Camera Y between currentMinY and currentMaxY
+        float clampedY = Mathf.Clamp(desiredY, currentMinY, currentMaxY);
+
         Vector3 targetPosition = new Vector3(
-            transform.position.x,                 // DO NOT FOLLOW X
-            player.position.y + verticalOffset,   // FOLLOW ONLY Y
+            transform.position.x,
+            clampedY,
             transform.position.z
         );
 
-        transform.position = Vector3.SmoothDamp(
-            transform.position, 
-            targetPosition, 
-            ref velocity, 
-            smoothTime
-        );
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-        // Smooth camera zoom
         Camera cam = GetComponent<Camera>();
         cam.orthographicSize = Mathf.Lerp(
-            cam.orthographicSize, 
-            targetSize, 
+            cam.orthographicSize,
+            targetSize,
             Time.deltaTime * zoomSpeed
         );
     }
 
-    // Snap to player after teleport (fixes delay)
     public void SnapToPlayer(float bossArenaX)
     {
+        float desiredY = player.position.y + verticalOffset;
+        float clampedY = Mathf.Clamp(desiredY, currentMinY, currentMaxY);
+
         transform.position = new Vector3(
-            bossArenaX,                 // Again: keep X unchanged
-            player.position.y + verticalOffset,
+            bossArenaX,
+            clampedY,
             transform.position.z
         );
 
         velocity = Vector3.zero;
     }
 
-    // Enter boss arena – ONLY change zoom
-    public void SetBossZoom(float size)
+    // Zoom controls
+    public void SetBossZoom(float size) => targetSize = size;
+    public void ResetZoom() => targetSize = normalSize;
+
+    // Set normal world vertical bounds
+    public void SetNormalBounds()
     {
-        targetSize = size;
+        currentMinY = normalMinY;
+        currentMaxY = normalMaxY;
     }
 
-    // Return to normal gameplay zoom
-    public void ResetZoom()
+    // Set boss arena vertical bounds
+    public void SetBossBounds()
     {
-        targetSize = normalSize;
+        currentMinY = bossMinY;
+        currentMaxY = bossMaxY;
     }
 }

@@ -20,7 +20,7 @@ public class EnemyAISpearman : MonoBehaviour
     private int patrolIndex = 0;
 
     [Header("Attack Settings")]
-    public float attackRange = 1.5f;
+    public float attackRange = 3f;
     public float attackCooldown = 1.0f;
     public int attackDamage = 10;
 
@@ -47,22 +47,34 @@ private float lastAttackTime = 0f;
     Rigidbody2D rb;
     [HideInInspector] public bool spawnedByBoss = false;
 
-    public void Start()
+    private Animator animator;
+    private bool isAttacking = false;
+
+    private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        // Auto-fill patrol points from children if not set
+        if (patrolPoints == null || patrolPoints.Length == 0)
+    {
+        Transform root = transform.root;
+        patrolPoints = root.GetComponentsInChildren<Transform>();
+        patrolPoints = System.Array.FindAll(patrolPoints, t => t.name.StartsWith("Point"));
+    }
+
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
 
         if (spawnedByBoss)
         {
             state = AIState.Chase;
-
-            // Make sure they can ALWAYS detect player in the arena
             chaseDistance = 999f;
             loseTargetDistance = 999f;
         }
     }
+
 
     private void FixedUpdate()
     {
@@ -219,29 +231,65 @@ private float lastAttackTime = 0f;
 
     private bool PlayerInAttackRange()
     {
+        Debug.Log("Distance to player: " + Vector2.Distance(transform.position, target.position) + " | Attack Range: " + attackRange);
         return Vector2.Distance(transform.position, target.position) < attackRange;
     }
 
+    // private void AttackPlayer()
+    // {
+    //     // Look at the player
+    //     HandleLookDirection((target.position.x - transform.position.x));
+
+    //     // Stop movement when attacking
+    //     rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+    //     // Cooldown check
+    //     if (Time.time - lastAttackTime >= attackCooldown)
+    //     {
+    //         lastAttackTime = Time.time;
+
+    //         // Damage player
+    //         PlayerHealth health = target.GetComponent<PlayerHealth>();
+    //         if (health != null)
+    //         {
+    //             health.TakeDamage(attackDamage);
+    //         }
+    //     }
+    // }
+
     private void AttackPlayer()
     {
-        // Look at the player
+
+        Debug.Log("Spearman in attack range.");
         HandleLookDirection((target.position.x - transform.position.x));
 
-        // Stop movement when attacking
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-
-        // Cooldown check
-        if (Time.time - lastAttackTime >= attackCooldown)
+        if (!isAttacking)
         {
-            lastAttackTime = Time.time;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stop moving
+            animator.SetTrigger("Attack");
+            Debug.Log("Spearman attacking!");
+            isAttacking = true; // Lock re-attack until animation event unlocks
+        }
+    }
 
-            // Damage player
+    public void DealAttackDamage()
+    {
+        Debug.Log("Spearman dealing damage.");
+        if (Vector2.Distance(transform.position, target.position) < attackRange)
+        {
+            Debug.Log("Spearman hit the player.");
             PlayerHealth health = target.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
             }
         }
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+        lastAttackTime = Time.time;
     }
 
 

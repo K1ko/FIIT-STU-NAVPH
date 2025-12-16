@@ -74,10 +74,6 @@ public class BossPhaseThree : MonoBehaviour
 
         if(bossPlatformsParent != null)
             bossPlatformsParent.gameObject.SetActive(false);
-
-
-
-        //SpawnCollectibles();
     }
 
 

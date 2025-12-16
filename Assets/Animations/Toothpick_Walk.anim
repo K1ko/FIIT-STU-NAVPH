@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy_Walk
+  m_Name: Toothpick_Walk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 9094093039806091176, guid: 02b051ed2ab5c4b60897b71228313ec7, type: 3}
-    - time: 0.2
+    - time: 0.16666667
       value: {fileID: 3372746902217428265, guid: 065550ae8b9f8484eaf143f3c5751868, type: 3}
-    - time: 0.38333333
+    - time: 0.33333334
       value: {fileID: -2147090555102222635, guid: 600a5ce6c75e74f70adbb7494dffc1e8, type: 3}
-    - time: 0.56666666
+    - time: 0.5
       value: {fileID: 100920411968809432, guid: 5213842c9494b449693d17d44d3552de, type: 3}
-    - time: 0.76666665
+    - time: 0.6666667
       value: {fileID: -9063017446142383984, guid: 7576bf5ad255445eb8ccedfcbd640826, type: 3}
     attribute: m_Sprite
     path: 
@@ -62,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7833333
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

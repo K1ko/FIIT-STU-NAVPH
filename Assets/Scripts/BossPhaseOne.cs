@@ -43,8 +43,7 @@ public class BossPhaseOne : MonoBehaviour
 
     void Update()
     {
-        if (player == null || !this.enabled)
-            return;
+        if (player == null || !this.enabled) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
@@ -79,48 +78,53 @@ public class BossPhaseOne : MonoBehaviour
             Debug.LogWarning("No Echo Minion prefab or spawn points assigned.");
             return;
         }
-    
+
         int minionsToSpawn = Random.Range(1, 4);
-    
+
         for (int i = 0; i < minionsToSpawn; i++)
         {
             int spawnIndex = Random.Range(0, minionSpawnPoints.Length);
-    
-            GameObject minionObj = Instantiate(
+
+            // Instantiate whole prefab
+            GameObject minionRoot = Instantiate(
                 echoMinionPrefab,
                 minionSpawnPoints[spawnIndex].position,
                 Quaternion.identity
             );
-    
-            minionObj.tag = "BossMinion";
-    
-            EnemyAISpearman minion = minionObj.GetComponent<EnemyAISpearman>();
-    
-            if (minion != null)
+
+            // Find the CHILD that contains the AI script
+            EnemyAISpearman minionAI = minionRoot.GetComponentInChildren<EnemyAISpearman>();
+
+            if (minionAI != null)
             {
-                minion.target = player.transform;
-                minion.spawnedByBoss = true;
+                // Assign target
+                minionAI.target = player.transform;
+                minionAI.spawnedByBoss = true;
+
+                // Tag the actual enemy child so Phase Two can destroy it
+                minionAI.gameObject.tag = "BossMinion";
+            }
+            else
+            {
+                Debug.LogWarning("Minion prefab missing EnemyAISpearman component in children.");
             }
         }
-    
+
         Debug.Log("Echo Minions summoned.");
     }
 
-
-    // Called when Boss triggers a phase change
     private void HandlePhaseChanged(int newPhase)
     {
         if (newPhase >= 2)
         {
-            Debug.Log("Boss entering Phase " + newPhase + " — disabling Phase One behavior.");
-            this.enabled = false;
+            Debug.Log("Boss entering Phase Two – disabling Phase One.");
+            enabled = false;
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 10f); // Phase One range
+        Gizmos.DrawWireSphere(transform.position, 10f);
     }
-
 }

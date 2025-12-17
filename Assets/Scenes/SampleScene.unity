@@ -3010,6 +3010,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 439759657}
+    - target: {fileID: 8889111580879603608, guid: 4a143ce3df9ea4262ad4df15bcec5e23, type: 3}
+      propertyPath: nextWaypointDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18907,6 +18911,10 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   healthBar: {fileID: 1188395002}
+  timeSinceLastDamage: 0
+  healingDelay: 5
+  healingRate: 5
+  isHealing: 0
 --- !u!114 &439759662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64199,7 +64207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1489315796
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,6 +26,16 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(new InventorySlot(item, quantity));
         }
 
+        if (item.itemName == "Jordany")
+        {
+        PlayerMovementPlatformer player =
+            FindFirstObjectByType<PlayerMovementPlatformer>();
+
+        if (player != null)
+            player.EnableDoubleJump();
+        }
+
+
         Debug.Log($"Added {item.itemName} x{quantity} to inventory");
     }
 

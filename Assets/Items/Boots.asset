@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b0a79ebc4a904e7abbdcec0285c78e1, type: 3}
-  m_Name: Key
+  m_Name: Boots
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
-  itemName: Key
-  icon: {fileID: 1654350297960027178, guid: 36c5276962b264c639ecb3dc50114b7f, type: 3}
+  itemName: Jordany
+  icon: {fileID: -478379637, guid: db684c432fc1a4e138c559ad9b97abf8, type: 3}
   isStackable: 0

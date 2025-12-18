@@ -5,6 +5,11 @@ public class ChestInteractable : MonoBehaviour, IInteractable
     public InventoryItem requiredKey;
     public Animator animator;
     public bool isOpened = false;
+    public InventoryItem lootItem;
+
+    public GameObject lootPickupPrefab; 
+    public Transform dropPoint;       
+
 
     public void Interact()
     {
@@ -17,11 +22,21 @@ public class ChestInteractable : MonoBehaviour, IInteractable
                 animator.SetTrigger("Open");
 
             UIMessageDisplay.instance.ShowMessage("You unlocked the chest!");
-            // loot here 
-        }
-        else
-        {
-            UIMessageDisplay.instance.ShowMessage("Chest is locked. You need a key.");
+
+            if (lootItem != null && lootPickupPrefab != null)
+            {
+                Vector3 spawnPosition = dropPoint != null ? dropPoint.position : transform.position + Vector3.up;
+
+                GameObject pickupObj = Instantiate(lootPickupPrefab, spawnPosition, Quaternion.identity);
+
+                ItemPickup pickup = pickupObj.GetComponent<ItemPickup>();
+                if (pickup != null)
+                {
+                    pickup.item = lootItem;
+                    pickup.quantity = 1; // or customize if needed
+                }
+            }
+
         }
     }
 

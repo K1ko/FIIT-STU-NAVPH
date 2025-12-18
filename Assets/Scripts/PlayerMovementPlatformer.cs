@@ -53,12 +53,12 @@ public class PlayerMovementPlatformer : MonoBehaviour
                 jumpCount = 2;
             }
         }
-        // Toggle double jump on key press 'E' for testing
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            canDoubleJump = !canDoubleJump;
-            Debug.Log("Double Jump Enabled: " + canDoubleJump);
-        }
+        // if (Input.GetKeyDown(KeyCode.O))
+        // {
+        //     canDoubleJump = !canDoubleJump;
+        //     Debug.Log("Double Jump Enabled: " + canDoubleJump);
+        // }
+        anim.SetBool("isJumping", !IsGrounded() && Mathf.Abs(RB1.linearVelocity.y) > 0.01f);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -84,6 +84,11 @@ public class PlayerMovementPlatformer : MonoBehaviour
     void Jump()
     {
         RB1.linearVelocity = Vector2.up * jumpVelocity;
+    }
+    public void EnableDoubleJump()
+    {
+        canDoubleJump = true;
+        Debug.Log("Double Jump UNLOCKED");
     }
     private bool IsGrounded()
     {

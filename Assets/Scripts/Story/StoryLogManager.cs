@@ -18,6 +18,7 @@ public class StoryLogManager : MonoBehaviour
         if (!unlockedPages.Contains(page))
         {
             unlockedPages.Add(page);
+            GameManager.Instance.CollectBook();
             Debug.Log("Story page unlocked: " + page.title);
         }
     }

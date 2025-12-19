@@ -37,6 +37,9 @@ public class ChestInteractable : MonoBehaviour, IInteractable
                 }
             }
 
+        } else
+        {
+            UIMessageDisplay.instance.ShowMessage("You need a key to open this chest.");
         }
     }
 

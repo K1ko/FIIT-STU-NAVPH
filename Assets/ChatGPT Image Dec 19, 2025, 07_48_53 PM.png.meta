@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f2aa182e56ad34cf9b3eea0b876721a8
+guid: 0c9fc3479baa94bf6ae7a6d73393cf3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7243526744037451186
-    second: mecz_0
+      213: -3086717981800124773
+    second: ChatGPT Image Dec 19, 2025, 07_48_53 PM_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mecz_0
+      name: ChatGPT Image Dec 19, 2025, 07_48_53 PM_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 62
-        height: 61
+        x: 0
+        y: 0
+        width: 1536
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4a1b9cddc2d97b90800000000000000
-      internalID: -7243526744037451186
+      spriteID: b9e2ef48956c925d0800000000000000
+      internalID: -3086717981800124773
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mecz_0: -7243526744037451186
+      ChatGPT Image Dec 19, 2025, 07_48_53 PM_0: -3086717981800124773
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

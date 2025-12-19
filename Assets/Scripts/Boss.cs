@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -93,6 +94,23 @@ public class Boss : MonoBehaviour
 
     private void Die()
     {
+        int books = GameManager.Instance.GetBooks();
+        Debug.Log($"Books collected: {books}");
+        if (books >= 4)
+        {
+            SceneManager.LoadScene("TrueEnding");
+            Debug.Log("True ending triggered.");
+        }
+        else if (books >= 3)
+        {
+            SceneManager.LoadScene("NormalEnding");
+            Debug.Log("Normal ending triggered.");
+        }
+        else
+        {
+            SceneManager.LoadScene("BadEnding");
+            Debug.Log("Bad ending triggered.");
+        }
         Debug.Log("Boss died.");
         // TODO: add death animation, etc.
     }

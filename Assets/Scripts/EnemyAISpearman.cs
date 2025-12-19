@@ -58,11 +58,11 @@ private float lastAttackTime = 0f;
 
         // Auto-fill patrol points from children if not set
         if (patrolPoints == null || patrolPoints.Length == 0)
-    {
+        {
         Transform root = transform.root;
         patrolPoints = root.GetComponentsInChildren<Transform>();
         patrolPoints = System.Array.FindAll(patrolPoints, t => t.name.StartsWith("Point"));
-    }
+        }
 
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);

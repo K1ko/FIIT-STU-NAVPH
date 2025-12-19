@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Key
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 1654350297960027178, guid: 36c5276962b264c639ecb3dc50114b7f, type: 3}
   isStackable: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossRoomTeleporter : MonoBehaviour
 {
     public Transform TeleportPoint;     // where the player appears in the boss room
-    public GameObject boss;          // add this
+    public GameObject boss;   
     public Camera mainCamera;
 
     private bool triggered = false;

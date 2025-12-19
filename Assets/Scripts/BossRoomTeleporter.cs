@@ -2,33 +2,49 @@ using UnityEngine;
 
 public class BossRoomTeleporter : MonoBehaviour
 {
-    public Transform TeleportPoint;     // where the player appears in the boss room
-    public GameObject boss;   
-    public Camera mainCamera;
+    public Transform teleportPoint;
+    public GameObject boss;
 
-    private bool triggered = false;
+    private bool used = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        if (triggered) return;
+        // Get the BookStandInteractable component on last book
+        BookStandInteractable bookStand = GetComponent<BookStandInteractable>();
 
-        if (collision.CompareTag("Player"))
+        if (bookStand == null)
         {
-            triggered = true;
+            Debug.LogError("BossRoomTeleporter requires a BookStandInteractable!");
+            return;
+        }
 
-            collision.transform.position = TeleportPoint.position;
+        // After reading the book, teleport player
+        bookStand.SetOnReadComplete(() =>
+        {
+            if (used) return;
+            used = true;
 
-            // Snap the camera instantly to the new player position
-            CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-            cam.SetBossBounds();
-            cam.SnapToPlayer(-224.65f);
-            cam.SetBossZoom(22f);
-            // Activate the boss
-            if (boss != null)
-            {
-                boss.SetActive(true);
-                Debug.Log("Boss activated via teleporter!");
-            }
+            TeleportPlayer();
+        });
+    }
+
+    private void TeleportPlayer()
+    // Teleport player to boss room
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        player.transform.position = teleportPoint.position;
+
+        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
+        cam.SetBossBounds();
+        cam.SnapToPlayer(-224.65f);
+        cam.SetBossZoom(22f);
+
+        if (boss != null)
+        {
+            boss.SetActive(true);
+            Debug.Log("Boss activated after reading final book!");
         }
     }
 }

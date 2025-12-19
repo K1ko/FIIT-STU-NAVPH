@@ -18868,7 +18868,7 @@ Transform:
   m_GameObject: {fileID: 439759652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.5, y: 201.4, z: 0}
+  m_LocalPosition: {x: -20.3, y: 201.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21395,7 +21395,8 @@ GameObject:
   - component: {fileID: 494335607}
   - component: {fileID: 494335606}
   - component: {fileID: 494335609}
-  m_Layer: 0
+  - component: {fileID: 494335610}
+  m_Layer: 9
   m_Name: ArenaTeleportTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21414,9 +21415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb220e5036824a9db9ddec4a3b9a251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  TeleportPoint: {fileID: 439749657}
+  teleportPoint: {fileID: 439749657}
   boss: {fileID: 1869113764}
-  mainCamera: {fileID: 519420031}
 --- !u!61 &494335607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21451,7 +21451,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0000009536743, y: -0.011672974}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -21461,7 +21461,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.326868, y: 1.3969116}
   m_EdgeRadius: 0
 --- !u!4 &494335608
 Transform:
@@ -21536,6 +21536,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &494335610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494335605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad7f8b12bc2b457cb07dc30bc90d85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookStandInteractable
+  page: {fileID: 11400000, guid: ba37133d14ded4b8a8545e388e72af28, type: 2}
 --- !u!1 &495111962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6102233487632052025, guid: 2ce3b9ff7bf9540f2b85663b6543c95b, type: 3}

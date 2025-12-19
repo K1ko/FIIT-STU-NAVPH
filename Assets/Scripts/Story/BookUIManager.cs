@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class BookUIManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BookUIManager : MonoBehaviour
     public TMP_Text contentText;
     public Button closeButton;
 
+    private Action onCloseCallback;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -20,17 +23,23 @@ public class BookUIManager : MonoBehaviour
         bookPanel.SetActive(false);
     }
 
-    public void ShowPage(BookPage page)
+    public void ShowPage(BookPage page, Action onClose = null)
+    // Displays the book page UI with title and content
     {
         titleText.text = page.title;
         contentText.text = page.content;
         bookPanel.SetActive(true);
-        Time.timeScale = 0f; // Pause game while reading
+        Time.timeScale = 0f;
+
+        onCloseCallback = onClose; // Capture the callback
     }
 
     public void Close()
     {
         bookPanel.SetActive(false);
         Time.timeScale = 1f;
+
+        onCloseCallback?.Invoke(); // Invoke the callback if assigned
+        onCloseCallback = null;    // Clear after use
     }
 }

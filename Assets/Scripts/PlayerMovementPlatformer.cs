@@ -14,8 +14,10 @@ public class PlayerMovementPlatformer : MonoBehaviour
     public Vector2 boxSize;
 
     public Animator anim;
-
-
+    public AudioSource audioSource;
+    public AudioClip jumpClip;
+    public AudioClip landClip;
+    private bool wasGroundedLastFrame = true;
     void Start()
     {
         RB1 = GetComponent<Rigidbody2D>();
@@ -53,6 +55,14 @@ public class PlayerMovementPlatformer : MonoBehaviour
                 jumpCount = 2;
             }
         }
+        //isGrounded = IsGrounded();
+        // Detect landing (transition from air to ground)
+        if (!wasGroundedLastFrame && IsGrounded())
+        {
+            PlayLandSound();
+        }
+
+        wasGroundedLastFrame = IsGrounded();
         // if (Input.GetKeyDown(KeyCode.O))
         // {
         //     canDoubleJump = !canDoubleJump;
@@ -84,6 +94,7 @@ public class PlayerMovementPlatformer : MonoBehaviour
     void Jump()
     {
         RB1.linearVelocity = Vector2.up * jumpVelocity;
+        PlayJumpSound();
     }
     public void EnableDoubleJump()
     {
@@ -96,6 +107,20 @@ public class PlayerMovementPlatformer : MonoBehaviour
         //overlapcollider
         //Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
         return raycastHit2d.collider != null;
+    }
+    public void PlayJumpSound()
+    {
+        if (audioSource != null && jumpClip != null)
+        {
+            audioSource.PlayOneShot(jumpClip);
+        }
+    }
+    public void PlayLandSound()
+    {
+        if (audioSource != null && landClip != null)
+        {
+            audioSource.PlayOneShot(landClip);
+        }
     }
     private void OnDrawGizmos()
     {

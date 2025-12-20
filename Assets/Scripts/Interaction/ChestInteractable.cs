@@ -9,7 +9,8 @@ public class ChestInteractable : MonoBehaviour, IInteractable
 
     public GameObject lootPickupPrefab; 
     public Transform dropPoint;       
-
+    public AudioSource audioSource;
+    public AudioClip openChestSound;
 
     public void Interact()
     {
@@ -17,6 +18,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
 
         if (InventoryManager.instance.UseItem(requiredKey))
         {
+            PlayOpenChestSound();
             isOpened = true;
             if (animator != null)
                 animator.SetTrigger("Open");
@@ -49,5 +51,13 @@ public class ChestInteractable : MonoBehaviour, IInteractable
             return null;
 
         return "Open Chest (E)";
+    }
+
+    public void PlayOpenChestSound()
+    {
+        if (audioSource != null && openChestSound != null)
+        {
+            audioSource.PlayOneShot(openChestSound);
+        }
     }
 }

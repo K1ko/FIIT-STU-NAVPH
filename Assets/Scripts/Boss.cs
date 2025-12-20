@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour
     public event Action<int> OnPhaseChanged;
 
     public bool isFacingRight = false;
-
+    public bool isDead = false;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -73,6 +73,8 @@ public class Boss : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            isDead = true;
+            Debug.Log("Boss isDead: " + isDead);
             anim.SetTrigger("Die");
         }
     }

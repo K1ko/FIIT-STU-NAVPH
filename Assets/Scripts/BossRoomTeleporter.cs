@@ -6,7 +6,8 @@ public class BossRoomTeleporter : MonoBehaviour
     public GameObject boss;
 
     private bool used = false;
-
+    public AudioSource teleportPlayer;
+    public AudioClip teleportSound;
     private void Start()
     {
         // Get the BookStandInteractable component on last book
@@ -23,7 +24,7 @@ public class BossRoomTeleporter : MonoBehaviour
         {
             if (used) return;
             used = true;
-
+            PlayTeleportSound();
             TeleportPlayer();
         });
     }
@@ -47,4 +48,13 @@ public class BossRoomTeleporter : MonoBehaviour
             Debug.Log("Boss activated after reading final book!");
         }
     }
+
+    public void PlayTeleportSound()
+    {
+        if (teleportSound != null && teleportPlayer != null)
+        {
+            teleportPlayer.PlayOneShot(teleportSound);
+        }
+    }
+    
 }

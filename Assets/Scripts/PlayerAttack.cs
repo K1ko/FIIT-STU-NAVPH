@@ -17,6 +17,12 @@ public class PlayerAttack : MonoBehaviour
     public Animator anim;
 
 
+    public AudioSource sfxSource;
+    public AudioClip swordSwingSound;
+    public AudioClip swordDamageSound;
+    public AudioClip unarmedSwingSound;
+    public AudioClip unarmedDamageSound;
+
     void Update()
     {
         if (timeBetweenAttacks <= 0)
@@ -45,11 +51,16 @@ public class PlayerAttack : MonoBehaviour
     public void DoAttackHit()
     {
         // Attack regular enemies
+        bool hasWeapon = InventoryManager.instance.HasItem(swordItem);
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemiesToDamage)
         {
             if (enemy.TryGetComponent(out Enemy e))
             {
+                if (hasWeapon)
+                    PlayDamageSound();
+                else
+                    PlayUnarmedDamageSound();
                 e.TakeDamage(damage);
             }
         }
@@ -60,6 +71,10 @@ public class PlayerAttack : MonoBehaviour
         {
             if (boss.TryGetComponent(out Boss b))
             {
+                if (hasWeapon)
+                    PlayDamageSound();
+                else
+                    PlayUnarmedDamageSound();
                 b.TakeDamage(damage);
             }
         }
@@ -68,7 +83,23 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
+    public void PlaySwordSwingSound()
+    {
+        sfxSource.PlayOneShot(swordSwingSound);
+    }
 
+    public void PlayDamageSound()
+    {
+        sfxSource.PlayOneShot(swordDamageSound);
+    }
+    public void PlayUnarmedSwingSound()
+    {
+        sfxSource.PlayOneShot(unarmedSwingSound);
+    }
+    public void PlayUnarmedDamageSound()
+    {
+        sfxSource.PlayOneShot(unarmedDamageSound);
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

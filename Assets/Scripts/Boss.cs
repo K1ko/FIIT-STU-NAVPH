@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
+    public HealthBarOther healthBar;
 
     [Header("Health")]
     public int maxHealth = 300;
@@ -22,6 +23,7 @@ public class Boss : MonoBehaviour
     public float phase2AttackRange = 15f;
     public float phase3AttackRange = 20f;
 
+    public Animator anim;
     public event Action<int> OnPhaseChanged;
 
     public bool isFacingRight = false;
@@ -29,6 +31,10 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(maxHealth, currentHealth);
+        }
     }
 
     public void LookAtPlayer()
@@ -57,11 +63,17 @@ public class Boss : MonoBehaviour
 
         Debug.Log($"Boss took {amount} damage, HP = {currentHealth}");
 
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(maxHealth, currentHealth);
+        }
+
         CheckPhaseTransition();
+        Debug.Log("Boss current phase: " + currentPhase);
 
         if (currentHealth <= 0)
         {
-            Die();
+            anim.SetTrigger("Die");
         }
     }
 
@@ -112,6 +124,10 @@ public class Boss : MonoBehaviour
             Debug.Log("Bad ending triggered.");
         }
         Debug.Log("Boss died.");
-        // TODO: add death animation, etc.
+        Destroy(gameObject);
+    }
+    public void OnDeathAnimationFinished()
+    {
+        Die();
     }
 }

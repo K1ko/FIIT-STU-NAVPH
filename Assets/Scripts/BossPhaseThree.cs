@@ -79,7 +79,12 @@ public class BossPhaseThree : MonoBehaviour
 
     void Update()
     {
-        if (player == null || !this.enabled)
+        if (boss.isDead)
+        {
+            Debug.Log("Boss is dead, stopping fire.");
+            return;
+        }
+        if (player == null || boss == null || boss.isDead)
             return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -89,7 +94,7 @@ public class BossPhaseThree : MonoBehaviour
             fireTimer += Time.deltaTime;
 
 
-            if (fireTimer >= fireRate)
+            if (fireTimer >= fireRate && !boss.isDead)
             {
                 fireTimer = 0f;
                 Fire();

@@ -43,6 +43,11 @@ public class BossPhaseOne : MonoBehaviour
 
     void Update()
     {
+        if (boss.isDead)
+        {
+            Debug.Log("Boss is dead, stopping fire.");
+            return;
+        }
         if (player == null || !this.enabled) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);

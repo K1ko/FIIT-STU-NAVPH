@@ -110,6 +110,11 @@ public class BossPhaseTwo : MonoBehaviour
 
     void Update()
     {
+        if (boss.isDead)
+        {
+            Debug.Log("Boss is dead, stopping fire.");
+            return;
+        }
         if (player == null || !this.enabled)
             return;
 

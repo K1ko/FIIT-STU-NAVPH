@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossPhaseThree : MonoBehaviour
+public class BossPhaseThree : MonoBehaviour // Manages Boss Phase Three behavior
 {
    [Header("Attacks")]
     public GameObject firePoint;
@@ -34,7 +34,7 @@ public class BossPhaseThree : MonoBehaviour
             boss = GetComponent<Boss>();
     }
 
-    private void OnEnable()
+    private void OnEnable() // Subscribe to event
     {
         if (boss != null)
             boss.OnPhaseChanged += HandlePhaseChanged;
@@ -57,7 +57,7 @@ public class BossPhaseThree : MonoBehaviour
     }
 
     private void EnterPhaseThree()
-    // Phase 3 setup
+    // Phase 3 setup, switch floors, cleanup collectibles and disable platforms
     {
         Debug.Log("BossPhaseThree: Phase 3 started – switching floors.");
 
@@ -77,7 +77,7 @@ public class BossPhaseThree : MonoBehaviour
     }
 
 
-    void Update()
+    void Update()   // Handle firing at player
     {
         if (boss.isDead)
         {

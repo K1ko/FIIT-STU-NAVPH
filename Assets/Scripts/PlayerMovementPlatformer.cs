@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovementPlatformer : MonoBehaviour
+public class PlayerMovementPlatformer : MonoBehaviour   // Handles player movement, jumping, and platform interactions
 {
     public float moveSpeed;
     public float jumpVelocity;
@@ -19,13 +19,13 @@ public class PlayerMovementPlatformer : MonoBehaviour
     public AudioClip jumpClip;
     public AudioClip landClip;
     private bool wasGroundedLastFrame = true;
+    public static bool optionsOpen = false;
     void Start()
     {
         RB1 = GetComponent<Rigidbody2D>();
         boxCollider2d = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -43,13 +43,19 @@ public class PlayerMovementPlatformer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))   // Open/Close options menu
         {
-            OpenOptionsMenu();
-            Debug.Log("Options Menu Opened");
+            if(optionsOpen)
+            {
+                CloseOptionsMenu();
+            }
+            else
+            {
+                OpenOptionsMenu();
+            }
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))    // Jump key
         {
             if (IsGrounded())
             {
@@ -62,23 +68,16 @@ public class PlayerMovementPlatformer : MonoBehaviour
                 jumpCount = 2;
             }
         }
-        //isGrounded = IsGrounded();
-        // Detect landing (transition from air to ground)
-        if (!wasGroundedLastFrame && IsGrounded())
+        if (!wasGroundedLastFrame && IsGrounded())  // Play landing sound
         {
             PlayLandSound();
         }
 
         wasGroundedLastFrame = IsGrounded();
-        // if (Input.GetKeyDown(KeyCode.O))
-        // {
-        //     canDoubleJump = !canDoubleJump;
-        //     Debug.Log("Double Jump Enabled: " + canDoubleJump);
-        // }
         anim.SetBool("isJumping", !IsGrounded() && Mathf.Abs(RB1.linearVelocity.y) > 0.01f);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)  // Handle moving platforms and trampolines
     {
         if (other.gameObject.CompareTag("MovingPlatform") && IsGrounded())
         {
@@ -135,11 +134,20 @@ public class PlayerMovementPlatformer : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
-    public void OpenOptionsMenu()
+    public void OpenOptionsMenu()   // Open options menu
     {
-        
-        Time.timeScale = 0f;
-        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
-
+        if (!SceneManager.GetSceneByName("Options").isLoaded)
+        {
+            OptionsMenu.OpenedFromGame = true;
+            Time.timeScale = 0f;
+            SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+            optionsOpen = true;
+        }
+    }
+    public void CloseOptionsMenu()  // Close options menu
+    {
+        Time.timeScale = 1f;
+        SceneManager.UnloadSceneAsync("Options");
+        optionsOpen = false;
     }
 }

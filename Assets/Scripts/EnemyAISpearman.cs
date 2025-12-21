@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Pathfinding;
 
-public class EnemyAISpearman : MonoBehaviour
+public class EnemyAISpearman : MonoBehaviour    //  PARTS OF THE CODE WERE DONE USING VIDEO TUTORIAL ABOUT A* and modified for this game needs - controls enemy spearman AI behavior
 {
     public enum AIState { Patrol, Chase, Attack }
     public AIState state = AIState.Patrol;
@@ -84,7 +84,7 @@ private float lastAttackTime = 0f;
     {
         if (target == null)
             return;
-        switch (state)
+        switch (state)  // Handle behavior based on current AI state
         {
             case AIState.Patrol:
                 Patrol();
@@ -179,7 +179,7 @@ private float lastAttackTime = 0f;
         }
     }
 
-    private void PathFollow()
+    private void PathFollow() // WAS DONE USING VIDEO TUTORIAL ABOUT A* - Move along the calculated path toward the player
     {
         if (path == null) return;
         // reached end of path

@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour   // Manages boss behavior, health, phases, and death
 {
     [Header("References")]
     public Transform player;
@@ -41,7 +41,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void LookAtPlayer()
+    public void LookAtPlayer()  // Flips boss to face the player
     {
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
@@ -60,7 +60,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount)  // Takes damage and handles phase transitions and death
     {
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
@@ -83,12 +83,13 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private void CheckPhaseTransition()
+    private void CheckPhaseTransition() // Checks and handles phase transitions
     {
         if (currentPhase == 1 && currentHealth <= phase2Threshold)
         {
             currentPhase = 2;
             Debug.Log("Boss entering Phase 2");
+            UIMessageDisplay.instance.ShowMessageBoss("Fireballs have spawned! Collect them to damage the boss further!");
             OnPhaseChanged?.Invoke(2);
         }
         else if (currentPhase == 2 && currentHealth <= phase3Threshold)
@@ -99,7 +100,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public float GetCurrentAttackRange()
+    public float GetCurrentAttackRange()    // Returns attack range based on current phase for boss walk
     {
         switch (currentPhase)
         {
@@ -118,7 +119,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private void Die()
+    private void Die()  // Handles boss death and ending sequence
     {
         int books = GameManager.Instance.GetBooks();
         Debug.Log($"Books collected: {books}");
@@ -140,7 +141,7 @@ public class Boss : MonoBehaviour
         Debug.Log("Boss died.");
         Destroy(gameObject);
     }
-    public void OnDeathAnimationFinished()
+    public void OnDeathAnimationFinished()  // Called at the end of death animation
     {
         Die();
     }

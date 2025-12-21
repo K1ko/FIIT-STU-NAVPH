@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour    // Manages game state and collected items for ending conditions
 {
     public static GameManager Instance;
 

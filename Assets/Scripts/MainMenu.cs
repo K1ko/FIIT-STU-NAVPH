@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour   // Manages main menu interactions and scene transitions
 {
     public void StartGame()
     {
@@ -14,9 +14,13 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void OpenControls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Game quit"); // For editor testing
+        Debug.Log("Game quit");
     }
 }

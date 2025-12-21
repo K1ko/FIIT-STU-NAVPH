@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Sword
   icon: {fileID: -7243526744037451186, guid: f2aa182e56ad34cf9b3eea0b876721a8, type: 3}
   isStackable: 0
+  description: Be careful, can be sharp

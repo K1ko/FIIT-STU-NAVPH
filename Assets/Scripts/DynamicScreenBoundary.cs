@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DynamicScreenBoundary : MonoBehaviour
+public class DynamicScreenBoundary : MonoBehaviour  // Adjusts screen boundaries based on camera position
 {
     public Camera mainCamera;
     public BoxCollider2D leftBoundary;

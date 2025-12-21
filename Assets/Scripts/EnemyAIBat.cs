@@ -1,7 +1,7 @@
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyAIBat : MonoBehaviour
+public class EnemyAIBat : MonoBehaviour //  PARTS OF THE CODE WERE DONE USING VIDEO TUTORIAL ABOUT A* and modified for this game needs - Controls bat enemy AI for patrolling, chasing, and attacking the player
 {
     public enum AIState { Patrol, Chase, Attack }
 
@@ -40,7 +40,6 @@ public class EnemyAIBat : MonoBehaviour
     private int patrolIndex = 0;
     public float patrolSpeed = 150f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // find components
@@ -54,7 +53,7 @@ public class EnemyAIBat : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (state)
+        switch (state)  // Handle behavior based on current AI state
         {
             case AIState.Patrol:
                 Patrol();
@@ -164,8 +163,7 @@ public class EnemyAIBat : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    private void FollowPathToTarget()
+    private void FollowPathToTarget()   // WAS DONE USING VIDEO TUTORIAL ABOUT A* - Move along the calculated path toward the player
     {
         if (path == null) return;
         if (currentWaypoint >= path.vectorPath.Count) return;

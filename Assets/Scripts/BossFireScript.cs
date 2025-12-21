@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossFireScript : MonoBehaviour
+public class BossFireScript : MonoBehaviour // Manages the behavior of the boss's fire projectile
 {
     public GameObject player;
 
@@ -9,7 +9,6 @@ public class BossFireScript : MonoBehaviour
     public float force;
 
     private float timer;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,8 +23,7 @@ public class BossFireScript : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update()   // Destroy fire after 10 seconds
     {
         timer += Time.deltaTime;
 
@@ -47,9 +45,5 @@ public class BossFireScript : MonoBehaviour
             Debug.Log("Player health: " + collision.gameObject.GetComponent<PlayerHealth>().health);
             Destroy(gameObject);
         }
-        // else if (collision.gameObject.CompareTag("Ground"))
-        // {
-        //     Destroy(gameObject);
-        // }
     }
 }

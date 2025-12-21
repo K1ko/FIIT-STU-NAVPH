@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryUIManager : MonoBehaviour
+public class InventoryUIManager : MonoBehaviour // Manages the inventory UI
 {
     public static InventoryUIManager instance;
 
@@ -20,7 +20,7 @@ public class InventoryUIManager : MonoBehaviour
         inventoryPanel.SetActive(false);
     }
 
-    void Update()
+    void Update()   // Toggle inventory with "I" key
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -38,7 +38,7 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
-    public void RefreshInventory()
+    public void RefreshInventory()  // Update the inventory UI display
     {
         foreach (Transform child in itemGrid)
         {

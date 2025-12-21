@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossRoomTeleporter : MonoBehaviour
+public class BossRoomTeleporter : MonoBehaviour // Teleports player to boss room after reading final book
 {
     public Transform teleportPoint;
     public GameObject boss;

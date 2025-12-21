@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class UIInteractionPrompt : MonoBehaviour
+public class UIInteractionPrompt : MonoBehaviour    // Manages on-screen interaction prompts
 {
     public static UIInteractionPrompt instance;
     public TMP_Text promptText;
@@ -14,7 +14,7 @@ public class UIInteractionPrompt : MonoBehaviour
         SetPrompt(null);
     }
 
-    public void SetPrompt(string prompt)
+    public void SetPrompt(string prompt)    // Sets or clears the interaction prompt text
     {
         if (string.IsNullOrEmpty(prompt))
         {

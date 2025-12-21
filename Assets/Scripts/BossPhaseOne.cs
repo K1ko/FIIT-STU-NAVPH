@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossPhaseOne : MonoBehaviour
+public class BossPhaseOne : MonoBehaviour   // Manages the boss's behavior during Phase One
 {
     [Header("Attacks")]
     public GameObject firePoint;
@@ -24,24 +24,24 @@ public class BossPhaseOne : MonoBehaviour
         boss = GetComponent<Boss>();
     }
 
-    void OnEnable()
+    void OnEnable() // Subscribe to event
     {
         if (boss != null)
             boss.OnPhaseChanged += HandlePhaseChanged;
     }
 
-    void OnDisable()
+    void OnDisable()    // Unsubscribe from event
     {
         if (boss != null)
             boss.OnPhaseChanged -= HandlePhaseChanged;
     }
 
-    void Start()
+    void Start()    // Find player reference
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+    void Update()   // Handle firing and summoning minions
     {
         if (boss.isDead)
         {
@@ -71,13 +71,13 @@ public class BossPhaseOne : MonoBehaviour
         }
     }
 
-    void Fire()
+    void Fire() // Instantiate fire projectile
     {
         Instantiate(firePoint, firePos.position, Quaternion.identity);
         boss.PlayHitSound();
     }
 
-    void SummonMinions()
+    void SummonMinions()    // Summon 1-3 echo minions at random spawn points
     {
         if (echoMinionPrefab == null || minionSpawnPoints.Length == 0)
         {
@@ -119,7 +119,7 @@ public class BossPhaseOne : MonoBehaviour
         Debug.Log("Echo Minions summoned.");
     }
 
-    private void HandlePhaseChanged(int newPhase)
+    private void HandlePhaseChanged(int newPhase)   // Disable this script when phase changes
     {
         if (newPhase >= 2)
         {

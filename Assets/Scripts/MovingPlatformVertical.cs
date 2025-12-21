@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class MovingPlatformVertical : MonoBehaviour
+public class MovingPlatformVertical : MonoBehaviour  //  PARTS OF THE CODE WERE DONE USING VIDEO TUTORIAL and modified for this game needs - Controls vertical movement of a platform between two points
 {
     public Transform pointA, pointB;
     public float speed;
     public bool moveUp;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate()  // Move platform and reverse direction at endpoints
     {
         if (moveUp == true)
         {

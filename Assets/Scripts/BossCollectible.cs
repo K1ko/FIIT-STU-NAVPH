@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossCollectible : MonoBehaviour
+public class BossCollectible : MonoBehaviour    // Damages the boss when collected by the player
 {
     public int damageToBoss = 10;
 

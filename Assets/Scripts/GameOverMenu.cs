@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverMenu : MonoBehaviour
+public class GameOverMenu : MonoBehaviour   // Manages the game over menu options
 {
     public void RestartGame()
     {

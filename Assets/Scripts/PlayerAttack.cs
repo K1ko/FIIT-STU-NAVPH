@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour   // Handles player attack mechanics, including animations and damage application
 {
     private float timeBetweenAttacks = 0f;
     public float startTimeBetweenAttacks;
@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
 
     public int damage;
-    public InventoryItem swordItem; // Drag your Sword item here in the Inspector
+    public InventoryItem swordItem;
 
 
     public Animator anim;
@@ -29,8 +29,15 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F)) // Attack key
             {
-                bool hasSword = InventoryManager.instance.HasItem(swordItem);
-
+                bool hasSword = InventoryManager.instance.HasItem(swordItem);   // Check if player has sword
+                if (hasSword)   // damage values based on weapon
+                {
+                    damage = 10;
+                }
+                else
+                {
+                    damage = 1;
+                }
 
                 if (anim != null)
                 {
@@ -48,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void DoAttackHit()
+    public void DoAttackHit()   // Called by animation event to apply damage to enemies within range
     {
         // Attack regular enemies
         bool hasWeapon = InventoryManager.instance.HasItem(swordItem);
@@ -82,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Attack Hit Applied!");
     }
 
-
+    // Play attack sound effects
     public void PlaySwordSwingSound()
     {
         sfxSource.PlayOneShot(swordSwingSound);

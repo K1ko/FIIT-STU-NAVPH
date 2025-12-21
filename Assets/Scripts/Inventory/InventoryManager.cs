@@ -13,11 +13,11 @@ public class InventoryManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void AddItem(InventoryItem item, int quantity = 1)
+    public void AddItem(InventoryItem item, int quantity = 1)   // Add item to inventory
     {
         InventorySlot slot = inventory.Find(s => s.item == item);
 
-        if (slot != null && item.isStackable)
+        if (slot != null && item.isStackable)   // If item exists and is stackable, increase quantity
         {
             slot.AddQuantity(quantity);
         }
@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(new InventorySlot(item, quantity));
         }
 
-        if (item.itemName == "Jordany")
+        if (item.itemName == "Magic Boots") // Enable double jump if Magic Boots are picked up
         {
         PlayerMovementPlatformer player =
             FindFirstObjectByType<PlayerMovementPlatformer>();
@@ -39,12 +39,12 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"Added {item.itemName} x{quantity} to inventory");
     }
 
-    public bool HasItem(InventoryItem item)
+    public bool HasItem(InventoryItem item) // Check if item exists in inventory
     {
         return inventory.Exists(slot => slot.item == item);
     }
 
-    public bool UseItem(InventoryItem item)
+    public bool UseItem(InventoryItem item) // Remove quantity of item from inventory (for consumables like chest keys)
     {
         InventorySlot slot = inventory.Find(s => s.item == item);
         if (slot != null && slot.quantity > 0)
@@ -58,7 +58,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public List<InventorySlot> GetInventory()
+    public List<InventorySlot> GetInventory()   // Get the full inventory list
     {
         return inventory;
     }

@@ -10,7 +10,7 @@ public class PlayerInteractor : MonoBehaviour
     
     private IInteractable currentInteractable;    
 
-    void Update()
+    void Update()   // Check for player input to interact
     {
         DetectInteractable();
 
@@ -20,7 +20,7 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    void DetectInteractable()
+    void DetectInteractable()   // Detect interactable objects within range
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(interactionPoint.position, interactionRadius, interactableLayer);
 

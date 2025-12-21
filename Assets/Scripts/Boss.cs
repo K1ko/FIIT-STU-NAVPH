@@ -23,6 +23,10 @@ public class Boss : MonoBehaviour
     public float phase2AttackRange = 15f;
     public float phase3AttackRange = 20f;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip hitClip;
+
     public Animator anim;
     public event Action<int> OnPhaseChanged;
 
@@ -103,6 +107,14 @@ public class Boss : MonoBehaviour
             case 2: return phase2AttackRange;
             case 3: return phase3AttackRange;
             default: return phase1AttackRange;
+        }
+    }
+
+    public void PlayHitSound()
+    {
+        if (audioSource != null && hitClip != null)
+        {
+            audioSource.PlayOneShot(hitClip);
         }
     }
 

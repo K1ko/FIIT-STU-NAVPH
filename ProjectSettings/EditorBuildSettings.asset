@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Options.unity
     guid: fdb50ae7d171a4ba68ed3d734b30d846
   - enabled: 1
+    path: Assets/Scenes/MainCutScene.unity
+    guid: 25f29b136a1584198beda17960787641
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: d7113676d37f24236867bb647218cdc7
   - enabled: 1

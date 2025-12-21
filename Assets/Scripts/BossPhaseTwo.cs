@@ -136,6 +136,7 @@ public class BossPhaseTwo : MonoBehaviour
     void Fire()
     {
         Instantiate(firePoint, firePos.position, Quaternion.identity);
+        boss.PlayHitSound();
     }
 
 

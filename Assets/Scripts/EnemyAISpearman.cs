@@ -39,6 +39,10 @@ private float lastAttackTime = 0f;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip attackClip;
+
     private Path path;
     private int currentWaypoint = 0;
 
@@ -235,28 +239,6 @@ private float lastAttackTime = 0f;
         return Vector2.Distance(transform.position, target.position) < attackRange;
     }
 
-    // private void AttackPlayer()
-    // {
-    //     // Look at the player
-    //     HandleLookDirection((target.position.x - transform.position.x));
-
-    //     // Stop movement when attacking
-    //     rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-
-    //     // Cooldown check
-    //     if (Time.time - lastAttackTime >= attackCooldown)
-    //     {
-    //         lastAttackTime = Time.time;
-
-    //         // Damage player
-    //         PlayerHealth health = target.GetComponent<PlayerHealth>();
-    //         if (health != null)
-    //         {
-    //             health.TakeDamage(attackDamage);
-    //         }
-    //     }
-    // }
-
     private void AttackPlayer()
     {
 
@@ -282,6 +264,7 @@ private float lastAttackTime = 0f;
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
+                PlayAttackSound();
             }
         }
     }
@@ -290,6 +273,14 @@ private float lastAttackTime = 0f;
     {
         isAttacking = false;
         lastAttackTime = Time.time;
+    }
+
+    public void PlayAttackSound()
+    {
+        if (audioSource != null && attackClip != null)
+        {
+            audioSource.PlayOneShot(attackClip);
+        }
     }
 
 

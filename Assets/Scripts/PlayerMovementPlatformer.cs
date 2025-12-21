@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovementPlatformer : MonoBehaviour
 {
@@ -42,6 +43,12 @@ public class PlayerMovementPlatformer : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenOptionsMenu();
+            Debug.Log("Options Menu Opened");
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             if (IsGrounded())
@@ -126,5 +133,13 @@ public class PlayerMovementPlatformer : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+    }
+
+    public void OpenOptionsMenu()
+    {
+        
+        Time.timeScale = 0f;
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+
     }
 }

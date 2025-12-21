@@ -105,6 +105,7 @@ public class BossPhaseThree : MonoBehaviour
     void Fire()
     {
         Instantiate(firePoint, firePos.position, Quaternion.identity);
+        boss.PlayHitSound();
     }
 
     private void DestroyAllBossCollectibles()

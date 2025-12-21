@@ -74,6 +74,7 @@ public class BossPhaseOne : MonoBehaviour
     void Fire()
     {
         Instantiate(firePoint, firePos.position, Quaternion.identity);
+        boss.PlayHitSound();
     }
 
     void SummonMinions()

@@ -40,7 +40,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        SceneManager.UnloadSceneAsync("Options");
     }
 
     public void SetVolume(float volume)

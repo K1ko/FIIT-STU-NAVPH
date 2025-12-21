@@ -4,7 +4,6 @@ public class BookStandInteractable : MonoBehaviour, IInteractable
 {
     public BookPage page;
 
-    // Optional callback after the book is read
     protected System.Action onReadComplete;
 
     public void Interact()

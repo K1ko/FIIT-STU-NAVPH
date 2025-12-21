@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossPhaseTwo : MonoBehaviour
+public class BossPhaseTwo : MonoBehaviour   // Manages Boss Phase Two behavior
 {
 
     [Header("Attacks")]
@@ -17,7 +17,7 @@ public class BossPhaseTwo : MonoBehaviour
 
     [Header("Collectibles")]
     public GameObject collectiblePrefab;
-    public int numberOfCollectibles = 5;
+    public int numberOfCollectibles = 12;
     public Vector3 spawnAreaMin;
     public Vector3 spawnAreaMax;
 
@@ -36,7 +36,7 @@ public class BossPhaseTwo : MonoBehaviour
             boss = GetComponent<Boss>();
     }
 
-    private void OnEnable()
+    private void OnEnable() // Subscribe to event
     {
         if (boss != null)
             boss.OnPhaseChanged += HandlePhaseChanged;
@@ -59,7 +59,7 @@ public class BossPhaseTwo : MonoBehaviour
     }
 
     private void EnterPhaseTwo()
-    // Phase 2 setup
+    // Phase 2 setup, switch floors, destroy minions, spawn collectibles, show platforms
     {
         Debug.Log("BossPhaseTwo: Phase 2 started – destroying minions and switching floors.");
 
@@ -108,7 +108,7 @@ public class BossPhaseTwo : MonoBehaviour
         Debug.Log($"BossPhaseTwo: Spawned {spawned} collectibles on Boss Platforms.");
     }
 
-    void Update()
+    void Update()   // Handle firing at player
     {
         if (boss.isDead)
         {
@@ -120,7 +120,7 @@ public class BossPhaseTwo : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer <= 18f)
+        if (distanceToPlayer <= 50f)
         {
             fireTimer += Time.deltaTime;
 
@@ -141,7 +141,7 @@ public class BossPhaseTwo : MonoBehaviour
 
 
 
-    private void DestroyAllBossMinions()
+    private void DestroyAllBossMinions()    // Destroy all existing boss minions
     {
         GameObject[] minions = GameObject.FindGameObjectsWithTag("BossMinion");
         Debug.Log("BossPhaseTwo: Found " + minions.Length + " boss minions to destroy.");

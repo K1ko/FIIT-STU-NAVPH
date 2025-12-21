@@ -1,6 +1,6 @@
 using UnityEngine;
 using Pathfinding;
-public class EnemyGFX : MonoBehaviour
+public class EnemyGFX : MonoBehaviour   // Flips enemy sprite based on movement direction
 {
     public AIPath aIPath;
     // Update is called once per frame

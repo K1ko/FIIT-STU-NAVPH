@@ -1,5 +1,5 @@
 [System.Serializable]
-public class InventorySlot
+public class InventorySlot  // Represents a slot in the inventory
 {
     public InventoryItem item;
     public int quantity;

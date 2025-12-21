@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoryLogManager : MonoBehaviour
+public class StoryLogManager : MonoBehaviour    // Manages unlocked memory fragments
 {
     public static StoryLogManager instance;
 

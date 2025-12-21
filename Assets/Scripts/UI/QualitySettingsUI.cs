@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI; // or TMPro if using TMP_Dropdown
+using UnityEngine.UI;
 using System.Linq;
 
-public class QualitySettingsUI : MonoBehaviour
+public class QualitySettingsUI : MonoBehaviour  // Manages the quality settings UI
 {
     public Dropdown qualityDropdown;
 

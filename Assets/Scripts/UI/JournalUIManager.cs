@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class JournalUIManager : MonoBehaviour
+public class JournalUIManager : MonoBehaviour   // Manages the journal UI for displaying found memory fragments
 {
     public static JournalUIManager instance;
 
@@ -13,12 +13,12 @@ public class JournalUIManager : MonoBehaviour
     public Transform entryListParent;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI contentText;
-    public Button backButton; // <-- Reference to your Back Button
+    public Button backButton;
 
     private List<JournalEntry> journalEntries = new();
 
     [System.Serializable]
-    public class JournalEntry
+    public class JournalEntry   // Represents a journal entry
     {
         public string title;
         public string content;
@@ -50,7 +50,6 @@ public class JournalUIManager : MonoBehaviour
 
         journalPanel.SetActive(false);
 
-        // Hook up the back button once
         if (backButton != null)
         {
             backButton.onClick.AddListener(CloseJournal);

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0a79ebc4a904e7abbdcec0285c78e1, type: 3}
   m_Name: Boots
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
-  itemName: Jordany
+  itemName: Magic Boots
   icon: {fileID: -478379637, guid: db684c432fc1a4e138c559ad9b97abf8, type: 3}
   isStackable: 0
+  description: Gather the special double jump

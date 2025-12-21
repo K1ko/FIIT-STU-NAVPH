@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour   // Smoothly follows the player
 {
     public Transform player;
     public float smoothTime = 0.3f;
@@ -59,7 +59,7 @@ public class CameraFollow : MonoBehaviour
         );
     }
 
-    public void SnapToPlayer(float bossArenaX)
+    public void SnapToPlayer(float bossArenaX)  // Immediately snap camera to player in boss arena
     {
         float desiredY = player.position.y + verticalOffset;
         float clampedY = Mathf.Clamp(desiredY, currentMinY, currentMaxY);

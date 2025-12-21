@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class Cutscenemanager : MonoBehaviour
+public class Cutscenemanager : MonoBehaviour    // Manages cutscene playback and transitions
 {
     private VideoPlayer videoPlayer;
 
@@ -14,7 +14,7 @@ public class Cutscenemanager : MonoBehaviour
 
     void OnVideoEnd(VideoPlayer vp)
     {
-        SceneManager.LoadScene("MainMenu"); // Change if your scene is named differently
+        SceneManager.LoadScene("MainMenu");
     }
     void Update()
     {

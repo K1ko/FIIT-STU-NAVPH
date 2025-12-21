@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenu : MonoBehaviour    // Manages the options menu for audio and display settings
 {
 
     Resolution[] resolutions;
     public Dropdown resolutionDropdown;
-
-    void Start()
+    public static bool OpenedFromGame = false;
+    public AudioMixer audioMixer;
+    void Start()    // Initialize resolution options and load saved settings
     {
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -59,43 +60,56 @@ public class OptionsMenu : MonoBehaviour
             GameObject.Find("Volume").GetComponent<Slider>().value = masterValue;
         }
     }
-    public AudioMixer audioMixer;
 
-    public void BackToMainMenu()
+    public void BackToMainMenu()    // Close options menu and return to previous scene
     {
         Time.timeScale = 1f;
-        SceneManager.UnloadSceneAsync("Options");
+        if (OpenedFromGame)
+        {
+            PlayerMovementPlatformer.optionsOpen = false;
+            OpenedFromGame = false;
+            SceneManager.UnloadSceneAsync("Options");
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync("Options");
+        }
     }
 
-    public void SetVolume(float sliderValue)
+    public void SetVolume(float sliderValue)    // Set master volume
     {
         audioMixer.SetFloat("volume", sliderValue);
         PlayerPrefs.SetFloat("volume", sliderValue);
         Debug.Log("Volume set to: " + sliderValue + " dB");
     }
 
-    public void SetMusicVolume(float sliderValue)
+    public void SetMusicVolume(float sliderValue)   // Set music volume
     {
         audioMixer.SetFloat("MusicVolume", sliderValue);
         PlayerPrefs.SetFloat("MusicVolume", sliderValue);
     }
 
-    public void SetSFXVolume(float sliderValue)
+    public void SetSFXVolume(float sliderValue)  // Set SFX volume
     {
         audioMixer.SetFloat("SFXVolume", sliderValue);
         PlayerPrefs.SetFloat("SFXVolume", sliderValue);
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution(int resolutionIndex)  // Set screen resolution
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         Debug.Log("Resolution set to: " + resolution.width + "x" + resolution.height);
     }
 
-    public void SetFullscreen(bool isFullscreen)
+    public void SetFullscreen(bool isFullscreen)    // Set fullscreen mode
     {
         Screen.fullScreen = isFullscreen;
         Debug.Log("Fullscreen set to: " + isFullscreen);
+    }
+    public void QuitGame()   // Quit the game application
+    {
+        Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }

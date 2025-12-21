@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class OpenningCutSceneManager : MonoBehaviour
+public class OpenningCutSceneManager : MonoBehaviour    // Manages the opening cutscene and transitions to the main game scene
 {
     private VideoPlayer videoPlayer;
 
@@ -14,7 +14,7 @@ public class OpenningCutSceneManager : MonoBehaviour
 
     void OnVideoEnd(VideoPlayer vp)
     {
-        SceneManager.LoadScene("GameScene"); // Change if your scene is named differently
+        SceneManager.LoadScene("GameScene");
     }
     void Update()
     {

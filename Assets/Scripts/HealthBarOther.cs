@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarOther : MonoBehaviour
+public class HealthBarOther : MonoBehaviour  // Manages the health bar UI with smooth transitions and color changes for non-player characters
 {
     [SerializeField] private float timeToDecrease = 0.25f;
     [SerializeField] private Gradient healthGradient;

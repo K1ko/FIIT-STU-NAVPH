@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour  // Manages the health bar UI with smooth transitions and color changes for player health
 {
     [Header("Health Bar Components")]
     public Slider slider;         // The slider UI

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour  // Manages enemy health and damage intake
 {
     [SerializeField] private float maxHealth = 3f;
     private float currentHealth;
@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
         healthBar = GetComponentInChildren<HealthBarOther>();
         
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage)  // Reduces enemy health when taking damage
     {
         currentHealth -= damage;
         Debug.Log("Enemy took " + damage + " damage. Remaining health: " + currentHealth);

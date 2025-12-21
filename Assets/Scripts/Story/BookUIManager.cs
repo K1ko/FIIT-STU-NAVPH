@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-public class BookUIManager : MonoBehaviour
+public class BookUIManager : MonoBehaviour  // Manages the UI for displaying book pages
 {
     public static BookUIManager instance;
 

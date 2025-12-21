@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BossInitializer : MonoBehaviour
+public class BossInitializer : MonoBehaviour    // Activates the boss at the start of the boss fight
 {
-    public GameObject boss;  // the root boss object (disabled initially)
+    public GameObject boss;
 
     public void ActivateBoss()
     {

@@ -16,7 +16,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
     {
         if (isOpened) return;
 
-        if (InventoryManager.instance.UseItem(requiredKey))
+        if (InventoryManager.instance.UseItem(requiredKey)) // Check if player has the correct key
         {
             PlayOpenChestSound();
             isOpened = true;
@@ -25,7 +25,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
 
             UIMessageDisplay.instance.ShowMessage("You unlocked the chest!");
 
-            if (lootItem != null && lootPickupPrefab != null)
+            if (lootItem != null && lootPickupPrefab != null)   // Spawn the loot pickup
             {
                 Vector3 spawnPosition = dropPoint != null ? dropPoint.position : transform.position + Vector3.up;
 
@@ -35,7 +35,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
                 if (pickup != null)
                 {
                     pickup.item = lootItem;
-                    pickup.quantity = 1; // or customize if needed
+                    pickup.quantity = 1;
                 }
             }
 
